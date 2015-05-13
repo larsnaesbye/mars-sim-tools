@@ -6,6 +6,7 @@
 # @author Lars Næsbye Christensen
 #
 # A very simple script to tell us how much Swing and JavaFX we use
+# Note that it doesn't discern between packages and imports
 #
 # Usage : 'python transition.py [path]' and the path you wish to traverse, e.g. '/home/user/mars-sim'
 
