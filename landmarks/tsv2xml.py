@@ -8,9 +8,11 @@
 # This script requires Python 2.7 or later and the 'SearchResults' file to be in the
 # same directory as the script file.
 #
-# To generate TSV file at http://planetarynames.wr.usgs.gov/AdvancedSearch
-# Select System: MARS and target: Mars; Add column 'Feature Type Code'; Run Search
-# Scroll down and click 'TSV (tab separated values) for importing into other spread sheets' 
+# To generate TSV file go to http://planetarynames.wr.usgs.gov/AdvancedSearch
+# Select System: MARS and target: Mars; 
+# Under "Columns to include": add column 'Feature Type Code';
+# Click 'Search'
+# Scroll down to the bottom and click 'TSV (tab separated values) for importing into other spread sheets' 
 # Save the file as SearchResults in the same directory as this script. 
 # Usage : 'python tsv2xml.py' and the resulting file landmarks.xml is fit for use with MSP
 # when put in the correct directory
