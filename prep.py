@@ -6,13 +6,13 @@
 # @author Lars Næsbye Christensen
 #
 # A very simple script that runs the other tool scripts in succession
-#
+# still in planning phase, awaiting the other scripts
 
 import io
 import os
 import sys
 
-
+# TODO:
 # do sanity check
 # run i18n to prepare localized strings
 # run landmarks and later move the file in place
