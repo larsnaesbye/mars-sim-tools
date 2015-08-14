@@ -2,7 +2,7 @@
 # Mars Simulation Project
 # Script to prepare mars-sim for release
 # transition.py
-# @version 3.08 2015-05-15
+# @version 3.08 2015-08-14
 # @author Lars Næsbye Christensen
 #
 # A very simple script that runs the other tool scripts in succession

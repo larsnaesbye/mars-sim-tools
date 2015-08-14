@@ -2,7 +2,7 @@
 # Mars Simulation Project
 # Script for importing tab-separated landmark file
 # tsv2xml.py
-# @version 3.08 2015-05-12
+# @version 3.08 2015-08-14
 # @author Lars Næsbye Christensen
 #
 # This script requires Python 2.7 or later and the 'SearchResults' file to be in the
