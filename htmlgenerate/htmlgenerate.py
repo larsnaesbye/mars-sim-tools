@@ -17,7 +17,12 @@ import sys
 # we should check for empty args
 # Parse the XML nodes properly
 # include the existing CSS
-xmldir = sys.argv[1]; # path to XML source file 
+
+if len(sys.argv) > 1 :
+	xmldir = sys.argv[1]; # path to XML source file 
+else: 
+	print "Missing argument - quitting...\n"
+	sys.exit()
 
 # Open our sample file
 f = open('resources.xml')
