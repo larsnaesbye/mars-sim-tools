@@ -3,7 +3,7 @@
 # Script for making the HTML5 user guide files for resources and processes
 # replaces the previous java-based internal code
 # htmlgenerate.py
-# @version 3.08 2015-08-14
+# @version 3.08 2015-08-20
 # @author Lars Næsbye Christensen
 #
 # Usage : 'python htmlgenerate.py [xmldir] [htmldir]' 
@@ -12,11 +12,6 @@
 from xml.dom.minidom import Document
 
 import sys
-
-# TODO: 
-# we should check for empty args
-# Parse the XML nodes properly
-# include the existing CSS
 
 if len(sys.argv) > 1 :
 	xmldir = sys.argv[1]; # path to XML source file 
