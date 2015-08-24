@@ -7,4 +7,4 @@ htmlgenerate generates HTML5 files for the inline user guide based on the XML fi
 
 transition is a simple percentage calculator to give us incentive to migrate faster from Swing to JavaFX. It doesn't change the source or data files in any way.
 
-MSP is on Sourceforge for the time being: http://mars-sim.sourceforge.net but under migration to GitHub pending compatibility with SVN clients.
+MSP is on Sourceforge for the time being: http://mars-sim.sourceforge.net but under migration to GitHub pending compatibility tests with SVN clients and a review.
