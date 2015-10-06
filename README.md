@@ -1,5 +1,5 @@
 # mars-sim-tools
-These Python scripts assist in preparing data prior to a release:
+These Python scripts assist in preparing data prior to a release, and are not used for the execution of the program itself.
 
 tsv2xml (landmarks) converts a generated list of Martian landmarks from USGS to a simulation-compatible format, and adds human artifacts from Wikipedia and Google Mars. It filters the raw list to some criteria.
 
