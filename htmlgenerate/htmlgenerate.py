@@ -3,7 +3,7 @@
 # Script for making the HTML5 user guide files for resources and processes
 # replaces the previous java-based internal code
 # htmlgenerate.py
-# @version 3.08 2015-08-20
+# @version 3.10
 # @author Lars Næsbye Christensen
 #
 # Usage : 'python htmlgenerate.py [xmldir] [htmldir]' 

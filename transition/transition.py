@@ -2,7 +2,7 @@
 # Mars Simulation Project
 # Script for output of progress with UI transition
 # transition.py
-# @version 3.08 2015-08-14
+# @version 3.10
 # @author Lars Næsbye Christensen
 #
 # A very simple script to tell us how much Swing and JavaFX we use
