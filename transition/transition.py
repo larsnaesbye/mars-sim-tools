@@ -33,7 +33,7 @@ for subdir, dirs, files in os.walk(rootdir):
 					print 'Swing: ' + file;
 				if 'javafx.' in open(subdir+"/"+ file).read():
 					num_of_files_with_javafx = num_of_files_with_javafx + 1;
-					print 'Javafx: ' + file;
+					print 'JavaFX: ' + file;
 					if carry == 1:
 						num_of_files_with_both = num_of_files_with_both +1;
 				carry = 0;
