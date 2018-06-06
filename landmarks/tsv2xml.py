@@ -8,7 +8,7 @@
 # This script requires Python 2.7 or later and the 'SearchResults' file to be in the
 # same directory as the script file.
 #
-# To generate TSV file go to http://planetarynames.wr.usgs.gov/AdvancedSearch
+# To generate TSV file go to https://planetarynames.wr.usgs.gov/AdvancedSearch
 # Select System: MARS and target: Mars; 
 # Under "Columns to include": add column 'Feature Type Code';
 # Click 'Search'
@@ -18,7 +18,9 @@
 # when put in the correct directory
 
 # TODO: 
-# Insert doctype - <!DOCTYPE landmark-list SYSTEM "conf/dtd/landmarks.dtd"> 
+# Insert doctype - <!DOCTYPE landmark-list SYSTEM "conf/dtd/landmarks.dtd">
+# Add parameters
+# Refactor
 
 from xml.dom.minidom import Document
 from decimal import Decimal
@@ -39,7 +41,7 @@ index_origin = 9
 
 # Add introductory comments 
 introcomment1 = xmldoc.createComment("Landmark coordinates from USGS Astrogeology Research Program")
-introcomment2 = xmldoc.createComment("http://planetarynames.wr.usgs.gov/AdvancedSearch")
+introcomment2 = xmldoc.createComment("https://planetarynames.wr.usgs.gov/AdvancedSearch")
 introcomment3 = xmldoc.createComment("Landmarks to be displayed in the user interface. ")
 xmldoc.appendChild(introcomment1)
 xmldoc.appendChild(introcomment2)
@@ -136,7 +138,7 @@ for artobj in artobjarray:
 
 f.close() # close our TSV file stream nicely
  
-# Write the final XML data to file landmarks.xml
+# Write out the final XML data to file landmarks.xml
 f = open('landmarks.xml', 'w')
 xmldoc.writexml(f, encoding= 'utf-8', indent="  ",addindent="	",newl="\n")
 f.close()
