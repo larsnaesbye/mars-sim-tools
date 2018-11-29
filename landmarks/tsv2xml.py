@@ -9,15 +9,15 @@
 # same directory as the script file.
 #
 # To generate TSV file go to https://planetarynames.wr.usgs.gov/AdvancedSearch
-# Select System: MARS and target: Mars; 
+# Select System: MARS and target: Mars;
 # Under "Columns to include": add column 'Feature Type Code';
 # Click 'Search'
-# Scroll down to the bottom and click 'TSV (tab separated values) for importing into other spread sheets' 
-# Save the file as SearchResults in the same directory as this script. 
+# Scroll down to the bottom and click 'TSV (tab separated values) for importing into other spread sheets'
+# Save the file as SearchResults in the same directory as this script.
 # Usage : 'python tsv2xml.py' and the resulting file landmarks.xml is fit for use with MSP
 # when put in the correct directory
 
-# TODO: 
+# TODO:
 # Insert doctype - <!DOCTYPE landmark-list SYSTEM "conf/dtd/landmarks.dtd">
 # Add parameters
 # Refactor
@@ -25,7 +25,7 @@
 from xml.dom.minidom import Document
 from decimal import Decimal
 
-# Initialize types 
+# Initialize types
 xmldoc = Document()
 # in case we don't have a key line (bad!), assume some default field indices
 index_feature_name = 0
@@ -39,14 +39,14 @@ index_feature_type = 6
 index_approval = 8
 index_origin = 9
 
-# Add introductory comments 
+# Add introductory comments
 introcomment1 = xmldoc.createComment("Landmark coordinates from USGS Astrogeology Research Program")
 introcomment2 = xmldoc.createComment("https://planetarynames.wr.usgs.gov/AdvancedSearch")
 introcomment3 = xmldoc.createComment("Landmarks to be displayed in the user interface. ")
 xmldoc.appendChild(introcomment1)
 xmldoc.appendChild(introcomment2)
 xmldoc.appendChild(introcomment3)
- 
+
 # Create the base XML element
 landmarks = xmldoc.createElement("landmark-list")
 #landmarks.setAttribute("xmlns", "http://mars-sim.sourceforge.net/landmarks")
@@ -61,7 +61,7 @@ f = open('SearchResults')
 tsvlinelist = f.readlines() # fill a list with TSV lines
 
 # Main parsing loop
-for tsvline in tsvlinelist: 
+for tsvline in tsvlinelist:
 	if tsvline == "\n":
 		print "Skipped empty line..."  # ignore empty lines
 	elif "Feature_Name" in tsvline:
@@ -81,20 +81,20 @@ for tsvline in tsvlinelist:
 	else:
 		print "Found data line, parsing..." #ready to move data into XML DOM
 		valuelist = tsvline.split("\t") # explode into a list of values
-		
+
 		landmark = xmldoc.createElement("landmark")
-	
+
 		namestring = valuelist[index_feature_name]
 		namestring = namestring.replace('[', '')
 		namestring = namestring.replace(']', '')
 		landmark.setAttribute("name", namestring) # Feature_Name
-	
+
 		landmark.setAttribute("diameter", valuelist[index_diameter]) # Diameter of feature
 # Center_Longitude
 		if Decimal(valuelist[index_long]) > 180:
 				landmark.setAttribute("longitude", str((360 - Decimal(valuelist[index_long])))+" W")
 		else:
-				landmark.setAttribute("longitude", str((Decimal(valuelist[index_long])))+" E") 
+				landmark.setAttribute("longitude", str((Decimal(valuelist[index_long])))+" E")
 # Center_Latitude
 		if Decimal(valuelist[index_lat]) < 0:
 			landmark.setAttribute("latitude", str(abs(Decimal(valuelist[index_lat])))+" S")
@@ -107,37 +107,40 @@ for tsvline in tsvlinelist:
 		landmarks.appendChild(landmark)
 
 
-# Add fixed external data for artificial objects (from Google Mars and Wikipedia)
+# Add fixed external data for artificial objects
+# Source: https://en.wikipedia.org/wiki/List_of_artificial_objects_on_Mars#Table_of_objects
 artobjcomment = xmldoc.createComment("Artificial Objects")
 landmarks.appendChild(artobjcomment)
 
-artobjarray =[["Beagle 2 Lander", "90.0 E", "10.6 N", "0.1"], 
-             ["Mars 2 Lander", "47.0 E", "45.0 S", "0.1"],
-             ["Mars 3 Lander", "158.0 W", "45.0 S", "0.1"],
-             ["Mars 6 Lander", "19.5 W", "23.9 S", "0.1"],
-             ["Mars Pathfinder Rover", "33.3 W", "19.3 N", "0.1"],
-             ["Mars Polar Lander", "164.7 E", "76.7 S", "0.1"],
-             ["MSL Curiosity Rover", "137.2 E", "4.3 S", "0.1"],
-             ["MER Spirit Rover", "175.47 E", "14.57 S", "0.1"],
-             ["MER Opportunity Rover", "5.53 W", "1.95 S", "0.1"],
-             ["Phoenix Mars Lander", "125.7 W", "68.22 N", "0.1"],
-             ["Viking Lander 1", "48.0 W", "22.5 N", "0.1"],
-             ["Viking Lander 2", "133.7 E", "47.9 N", "0.1"]]
-             
-for artobj in artobjarray: 
+artobjarray =[["Mars 2", "313.0 W", "45.0 S", "0.1"],
+             ["Mars 3", "158.0 W", "45.0 S", "0.1"],
+             ["Mars 6", "19.42 W", "23.9 S", "0.1"],
+             ["Viking 1 Lander", "48.222 W", "22.697 N", "0.1"],
+             ["Viking 2 Lander", "225.99 W", "48.269 N", "0.1"],
+             ["Mars Pathfinder + Sojourner Rover", "33.55 W", "19.33 N", "0.1"],
+             ["Mars Polar Lander + Deep Space 2", "195.0 W", "76.0 S", "0.1"],
+             ["Beagle 2", "90.4295 E", "11.5265 N", "0.1"],
+             ["Spirit Rover (MER-A)", "175.4785 E", "14.5718 S", "0.1"],
+             ["Opportunity Rover (MER-B)", "354.4734 E", "1.9462 S", "0.1"],
+             ["Phoenix Mars Lander", "125.9 W", "68.15 N", "0.1"],
+             ["Mars Science Laboratory (Curiosity)", "137.2 E", "4.6 S", "0.1"],
+             ["Schiaparelli EDM Lander", "357.5 E", "0.2 N", "0.1"],
+             ["inSight Lander", "135.0 E", "4.5 N", "0.1"]]
+
+for artobj in artobjarray:
 	landmark = xmldoc.createElement("landmark")
-	landmark.setAttribute("name", artobj[0]) 
-	landmark.setAttribute("longitude", artobj[1]) 
-	landmark.setAttribute("latitude", artobj[2]) 
-	landmark.setAttribute("diameter", artobj[3]) 
-	landmark.setAttribute("approvaldate", "N/A") 
+	landmark.setAttribute("name", artobj[0])
+	landmark.setAttribute("longitude", artobj[1])
+	landmark.setAttribute("latitude", artobj[2])
+	landmark.setAttribute("diameter", artobj[3])
+	landmark.setAttribute("approvaldate", "N/A")
 	landmark.setAttribute("type", "AO") # artificial object
-	landmark.setAttribute("origin", "N/A") 
+	landmark.setAttribute("origin", "N/A")
 
 	landmarks.appendChild(landmark)
 
 f.close() # close our TSV file stream nicely
- 
+
 # Write out the final XML data to file landmarks.xml
 f = open('landmarks.xml', 'w')
 xmldoc.writexml(f, encoding= 'utf-8', indent="  ",addindent="	",newl="\n")
